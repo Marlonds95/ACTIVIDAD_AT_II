@@ -36,8 +36,16 @@ export const DetailEquipmentScreen: React.FC = () => {
     const handlerUpdateEquipment = async () => {
         // Referencia a la BDD - tabla
         const dbRef = ref(dbRealTime, 'equipments/' + editFormEquipment.id);
+        // Crea un objeto solo con los campos que deseas actualizar
+        const updatedFields = {
+            equipo: editFormEquipment.equipo,
+            cantidad: editFormEquipment.cantidad,
+            numeroSerie: editFormEquipment.numeroSerie,
+            descripcion: editFormEquipment.descripcion,
+        };
+        
         // Actualizar data
-        await update(dbRef, { ...editFormEquipment });
+        await update(dbRef,  updatedFields);
         navigation.goBack();
     };
 
